@@ -12,12 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('login');
 });
 
 Auth::routes([
     'register' => false,
     'reset' => false
     ]);
+
+Route::resource('roles', 'RoleController',[ 'except' => ['edit','show']]);
 
 Route::get('/home', 'HomeController@index')->name('home');

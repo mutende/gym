@@ -3,9 +3,11 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center mt-5">
-        <div class="col-md-6">
+       
+        <div class="col-md-6 mt-5">
+        
             <div class="card">
-                <div class="card-header bg-primary">{{ __('Login') }}</div>
+                <div class="card-header bg-primary text-center text-bolder" style="font-weight: bolder; font-size:20px;">{{ __('Gym App Login') }}</div>
 
                     <div class="card-body">
 
