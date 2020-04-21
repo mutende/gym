@@ -3,9 +3,9 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center mt-5">
-       
+
         <div class="col-md-6 mt-5">
-        
+
             <div class="card">
                 <div class="card-header bg-primary text-center text-bolder" style="font-weight: bolder; font-size:20px;">{{ __('Gym App Login') }}</div>
 
@@ -42,21 +42,19 @@
                                     </div>
 
                                     <div class="form-group row mb-0 mt-3">
-                                       
+
                                             <button type="submit" class="btn btn-primary" style="width:120px !important;">
                                                 {{ __('Login') }}
-                                            </button>                                            
-                                      
+                                            </button>
+
                                     </div>
                                 </div>
-                        
+
                             </form>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
-    </div>
-</div>
 @endsection

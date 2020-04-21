@@ -25,14 +25,18 @@
                         <!-- small box -->
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>150</h3>
-
-                                <p>New Orders</p>
+                                @if($cls < 2)
+                                    <h3>{{ $cls }}</h3>
+                                    <p>Class</p>
+                                @else
+                                    <h3>{{ $cls }}</h3>
+                                    <p>Classes</p>
+                                @endif
                             </div>
                             <div class="icon">
                                 <i class="ion ion-bag"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="{{ route('home') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-down"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
@@ -40,14 +44,20 @@
                         <!-- small box -->
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3>53<sup style="font-size: 20px">%</sup></h3>
 
-                                <p>Bounce Rate</p>
+                                @if($trainers < 2)
+                                    <h3>{{ $trainers }}</h3>
+                                    <p>Trainer</p>
+                                @else
+                                    <h3>{{ $trainers }}</h3>
+                                    <p>Trainers</p>
+                                @endif
+
                             </div>
                             <div class="icon">
                                 <i class="ion ion-stats-bars"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="{{ route('trainer.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
@@ -55,14 +65,19 @@
                         <!-- small box -->
                         <div class="small-box bg-warning">
                             <div class="inner">
-                                <h3>44</h3>
+                                @if(($users-1) < 2)
+                                <h3>{{ $users-1 }}</h3>
+                                    <p>Client</p>
+                                @else
+                                    <h3>{{ $users-1 }}</h3>
+                                    <p>Clients</p>
+                                @endif
 
-                                <p>User Registrations</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-person-add"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="{{ route('client.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
@@ -70,29 +85,33 @@
                         <!-- small box -->
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3>65</h3>
-
-                                <p>Unique Visitors</p>
+                                @if($members < 2)
+                                    <h3>{{ $members }}</h3>
+                                    <p>Membership</p>
+                                @else
+                                    <h3>{{ $members }}</h3>
+                                    <p>Memberships</p>
+                                @endif
                             </div>
                             <div class="icon">
                                 <i class="ion ion-pie-graph"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="{{ route('memberships.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
                 </div>
                 <!-- /.row -->
                 <!-- Main row -->
-                <div class="row">
-                <section class="col-lg-7 connectedSortable">
+                <div class="row mt-5">
+                <section class="col-lg-8  offset-md-2 connectedSortable">
                 <div class="row">
         <div class="col-12">
           <div class="card">
             <div class="card-header">
               <div>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                <i class="fa fa-plus mr-2" aria-hidden="true"></i> Add Gym Session
+                <i class="fa fa-plus mr-2" aria-hidden="true"></i> Add Classes
                 </button>
               </div>
             </div>
@@ -106,41 +125,41 @@
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalCenterTitle">Add Session</h5>
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Add a Class</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
                         <div class="card card-primary">
-                   
-              <!-- /.card-header -->
-              <!-- form start -->
-                    <form role="form">
-                        <div class="card-body">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                        </div>
-                        </div>
-                        <!-- /.card-body -->
 
-                        <div class="card-footer">
-                        <button type="submit" class="btn btn-primary" style="width:120px !important;">Submit</button>
+                          <!-- /.card-header -->
+                          <!-- form start -->
+                                <form role="form" method="post" action="{{ route('home.store') }}">
+                                    @csrf
+                                    <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="className">Class Name</label>
+                                        <input type="text" class="form-control" id="className" name="name" placeholder="Class Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="description">Description</label>
+                                        <textarea type="text" class="form-control" id="description" name="description" placeholder="Enter Class Description" rows="4" cols="5"></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="Duration">Description</label>
+                                        <input type="number" class="form-control" id="Duration" name="duration" placeholder="Enter Duration in Hrs" maxlength="2">
+                                    </div>
+
+                                    </div>
+                                    <!-- /.card-body -->
+
+                                    <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary" style="width:120px !important;">Add</button>
+                                    </div>
+                                </form>
                         </div>
-                    </form>
-            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width:120px !important;">Close</button>
                         </div>
                         </div>
                     </div>
@@ -153,38 +172,85 @@
                 <tr>
                   <th>No</th>
                   <th>Class</th>
-                  <th>Start</th>
-                  <th>End</th>
-                  <th>Trainer</th>
+                  <th>Duration</th>
+                  <th>Description</th>
+                  <th>Action</th>
                 </tr>
                 </thead>
-                <tbody>              
-                
-                    <tr>
-                    <td>Misc</td>
-                    <td>IE Mobile</td>
-                    <td>Windows Mobile 6</td>
-                    <td>-</td>
-                    <td>C</td>
-                    </tr>
-                    <tr>
-                    <td>Misc</td>
-                    <td>PSP browser</td>
-                    <td>PSP</td>
-                    <td>-</td>
-                    <td>C</td>
-                    </tr>
-               
+                <tbody>
+                <?php $no = 1; ?>
+                    @foreach($sessions as $s)
+                        <tr>
+                            <td><?php echo $no; ?></td>
+                            <td>{{ $s->name }}</td>
+                            <td>{{ $s->duration }} Hours</td>
+                            <td>{{ $s->description }}</td>
+                            <td>
+
+                                <form method="POST" action="{{ route('home.destroy', $s->id) }}">
+                                    @csrf
+                                    @method("Delete")
+
+                                    <button type="button" class="btn  btn-sm btn-primary" data-toggle="modal" data-target="#session{{$s->id}}">
+                                        <span class="mr-1"><i class="fas fa-edit"></i></span> Edit
+                                    </button>
+
+                                    <button type="submit" class="btn  btn-sm btn-danger">
+                                        <span class="mr-1"><i class="fa fa-trash"></i></span> Delete
+                                    </button>
+
+                                </form>
+                            </td>
+                        </tr>
+
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="session{{$s->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Update Class</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('home.update', $s->id) }}" method="POST">
+                                            @csrf
+                                            @method("PUT")
+                                            <div class="card-body">
+
+                                                <div class="card-body">
+                                                    <div class="form-group">
+                                                        <label for="className">Class Name</label>
+                                                        <input type="text" class="form-control" id="className" name="name" placeholder="Class Name" value="{{$s->name}}">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="description">Description</label>
+                                                        <textarea type="text" class="form-control" id="description" name="description" placeholder="Enter Class Description" rows="4" cols="5">{{$s->description}}</textarea>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="Duration">Description</label>
+                                                        <input type="number" class="form-control" id="Duration" name="duration" placeholder="Enter Duration in Hrs" maxlength="2" value="{{$s->duration}}">
+                                                    </div>
+
+                                                </div>
+                                                <!-- /.card-body -->
+                                            <div class="card-footer">
+
+                                                <button type="submit" class="btn btn-primary" style="width:120px !important;">Update</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+
+
+
                 </tbody>
-                <tfoot>
-                <tr>
-                  <th>No</th>
-                  <th>Class</th>
-                  <th>Start</th>
-                  <th>End</th>
-                  <th>Trainer</th>
-                </tr>
-                </tfoot>
               </table>
             </div>
             <!-- /.card-body -->
@@ -193,71 +259,11 @@
         </div>
         <!-- /.col -->
       </div>
-               
-                </section>
 
-                    <!-- right col (We are only adding the ID to make the widgets sortable)-->
-                    <section class="col-lg-5 connectedSortable">
-
-                    <div class="card bg-gradient-success">
-                            <div class="card-header border-0">
-
-                                <h3 class="card-title">
-                                    <i class="far fa-calendar-alt"></i>
-                                    Calendar
-                                </h3>
-                                <!-- tools card -->
-                                <div class="card-tools">
-                                    <!-- button with a dropdown -->
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
-                                            <i class="fas fa-bars"></i></button>
-                                        <div class="dropdown-menu float-right" role="menu">
-                                            <a href="#" class="dropdown-item">Add new event</a>
-                                            <a href="#" class="dropdown-item">Clear events</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a href="#" class="dropdown-item">View calendar</a>
-                                        </div>
-                                    </div>
-                                    <button type="button" class="btn btn-success btn-sm" data-card-widget="collapse">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-success btn-sm" data-card-widget="remove">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
-                                <!-- /. tools -->
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body pt-0">
-                                <!--The calendar -->
-                                <div id="calendar" style="width: 100%"></div>
-                            </div>
-                            <!-- /.card-body -->
-                </div>
-
-                
-                <!-- /.card -->
-
-                <!-- Calendar -->
-                
-                <!-- /.card -->
-            </section>
-                    <!-- right col -->
-                </div>
-                <!-- /.row (main row) -->
-            </div><!-- /.container-fluid -->
-        </section>
-        <!-- /.content -->
+    </section>
+   </div>
     </div>
-    <!-- /.content-wrapper -->
-    <footer class="main-footer">
-        <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
-        All rights reserved.
-        <div class="float-right d-none d-sm-inline-block">
-            <b>Version</b> 3.0.2
-        </div>
-    </footer>
+
 
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">

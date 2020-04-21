@@ -5,11 +5,11 @@
  *      This is a demo file used only for the main dashboard (index.html)
  **/
 
-
-
 $(function () {
 
   'use strict'
+
+  $(function () {
   $('#example2').DataTable({
     "paging": true,
     "lengthChange": true,
@@ -18,9 +18,7 @@ $(function () {
     "info": true,
     "autoWidth": true,
   });
-
-  
-
+});
 
   // Make the dashboard widgets sortable Using jquery UI
   $('.connectedSortable').sortable({
@@ -31,6 +29,14 @@ $(function () {
     zIndex              : 999999
   })
   $('.connectedSortable .card-header, .connectedSortable .nav-tabs-custom').css('cursor', 'move')
+
+  // jQuery UI sortable for the todo list
+  $('.todo-list').sortable({
+    placeholder         : 'sort-highlight',
+    handle              : '.handle',
+    forcePlaceholderSize: true,
+    zIndex              : 999999
+  })
 
 
   $('.daterange').daterangepicker({
@@ -51,18 +57,5 @@ $(function () {
   /* jQueryKnob */
   $('.knob').knob()
 
-
-
-
-  // The Calender
-  $('#calendar').datetimepicker({
-    format: 'L',
-    inline: true
-  })
-
-  // SLIMSCROLL FOR CHAT WIDGET
-  $('#chat-box').overlayScrollbars({
-    height: '250px'
-  })
 
 })

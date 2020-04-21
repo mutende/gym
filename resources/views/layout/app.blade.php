@@ -39,7 +39,7 @@
             <li class="nav-item">
                 <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
             </li>
-            
+
         </ul>
 
         <!-- Right navbar links -->
@@ -68,10 +68,10 @@
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
-                    <img src=" {{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+                    <i class="img-circle elevation-2 text-white mt-2 fa fa-user"></i>
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block"> {{ Auth::user()->firstname }}  {{ Auth::user()->lastname }}</a>
+                    <a href="{{ route('home') }}" class="d-block"> {{ Auth::user()->firstname }}  {{ Auth::user()->lastname }}</a>
                 </div>
             </div>
 
@@ -80,33 +80,33 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
+                    <li class="nav-item">
+                        <a href="{{ route('home') }}" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('trainer.index') }}" class="nav-link">
                             <i class="nav-icon fa fa-running"></i>
                                 <p>Add Trainers</p>
                             </a>
                         </li>
+                    <li class="nav-item">
+                        <a href="{{ route('memberships.index') }}" class="nav-link">
+                            <i class="nav-icon fa fa-users"></i>
+                            <p>Add Memberships</p>
+                        </a>
+                    </li>
+
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('client.index') }}" class="nav-link">
                                 <i class="nav-icon far fa-address-card"></i>
-                
+
                                 <p>Add Clients</p>
                             </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fa fa-user-tag"></i>
-                                <p>Add Roles</p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fa fa-users"></i>
-                                <p>Add Memberships</p>
-                            </a>
-                        </li>
 
                 </ul>
             </nav>
@@ -142,16 +142,6 @@
 <script src="{{ asset('plugins/datatables/jquery.dataTables.js') }}"></script>
 <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.js') }}"></script>
 
-
-<!-- jQuery Knob Chart -->
-<script src=" {{ asset('plugins/jquery-knob/jquery.knob.min.js') }}"></script>
-<!-- daterangepicker -->
-<script src=" {{ asset('plugins/moment/moment.min.js') }}"></script>
-<script src=" {{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src=" {{ asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
-<!-- Summernote -->
-<script src=" {{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
 <!-- overlayScrollbars -->
 <script src=" {{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 <!-- AdminLTE App -->
