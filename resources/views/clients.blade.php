@@ -22,6 +22,10 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
+                    @if($memberships->count() == 0)
+                    <h2 class="text-center text-warning">Add Memberships First </h2>
+                    @else
+                    
                     <form action="{{ route('client.store') }}" method="POST">
                         @csrf
                         <div class="card-body">
@@ -67,6 +71,18 @@
                                     @enderror
                                 </div>
 
+                                <div class="form-group">
+                                            <label for="Duration">Description</label>
+                                            <select class="custom-select" name="membership">
+
+                                                @foreach($memberships as $ms)
+                                                    <option value="{{$ms->id}}"> {{$ms->membership}}</option>
+                                                @endforeach
+
+                                            </select>
+                                        </div>
+
+
                             </div>
                         </div>
                         <!-- /.card-body -->
@@ -76,6 +92,7 @@
                             <button type="submit" class="btn btn-primary ml-3" style="width:120px !important;">Add Client</button>
                         </div>
                     </form>
+                    @endif
                 </div>
 
             </div>
@@ -88,6 +105,7 @@
                             <th>Full Name</th>
                             <th>Email</th>
                             <th>Phone</th>
+                            <th>Membership</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -103,6 +121,7 @@
                                         <td>{{ $user->firstname }} {{$user->lastname}}</td>
                                         <td>{{ $user->email}}</td>
                                         <td>{{ $user->phone}}</td>
+                                        <td>{{ $user->membership->membership }}</td>
                                         <td>
                                      <form method="POST" action="{{ route('client.destroy', $user->id) }}">
                                                 @csrf

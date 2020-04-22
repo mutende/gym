@@ -135,6 +135,11 @@
 
                           <!-- /.card-header -->
                           <!-- form start -->
+                            @if($members == 0)
+
+                                <h2 class="text-center text-warning">Add Memberships First </h2>
+                                @else
+
                                 <form role="form" method="post" action="{{ route('home.store') }}">
                                     @csrf
                                     <div class="card-body">
@@ -152,6 +157,9 @@
                                         <input type="number" class="form-control" id="Duration" name="duration" placeholder="Enter Duration in Hrs" maxlength="2">
                                     </div>
 
+        
+
+
                                     </div>
                                     <!-- /.card-body -->
 
@@ -159,6 +167,7 @@
                                     <button type="submit" class="btn btn-primary" style="width:120px !important;">Add</button>
                                     </div>
                                 </form>
+                            @endif
                         </div>
                         </div>
                         </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Membership;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -16,8 +17,10 @@ class UserManagerController extends Controller
 
     public function index()
     {
+
+        $memberships = Membership::all();
         $users = User::all();
-        return view('clients')->withUsers($users);
+        return view('clients', compact('memberships','users'));
     }
 
 
@@ -30,7 +33,8 @@ class UserManagerController extends Controller
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:13'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users']
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'membership' => ['required']
         ]);
 
         $password = Hash::make('test@123');
@@ -40,6 +44,7 @@ class UserManagerController extends Controller
         $user->phone = $request->phone;
         $user->email = $request->email;
         $user->password = $password;
+        $user->membership_id = $request->membership;
 
         $user->save();
         return redirect()->back();
