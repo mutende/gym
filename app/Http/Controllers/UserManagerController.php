@@ -32,7 +32,6 @@ class UserManagerController extends Controller
     public function store(Request $request)
     {
 
-        
 
         $this->validate($request,[
             'firstname' => ['required', 'string', 'max:255'],
@@ -54,11 +53,9 @@ class UserManagerController extends Controller
 
         $user->save();
 
-        $cls = ClassSession::find($request->ss); // Modren Chairs, Home Chairs
+        $cls = ClassSession::find($request->ss); star
         $user->classsessions()->attach($cls);
         return redirect()->back();
-
-
 
     }
 
@@ -69,14 +66,12 @@ class UserManagerController extends Controller
     {
 
 
-
-
         $this->validate($request,[
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:13'],
             'email' => ['sometimes', 'string', 'email', 'min:6','max:255'],
-            'membership' => ['required']
+            'membership' => ['required'],
         ]);
 
 
@@ -91,6 +86,9 @@ class UserManagerController extends Controller
         }
         $user->membership_id = $request->membership;
 
+        $cls = ClassSession::find($request->ss); 
+        $user->classsessions()->attach($cls);
+
         $user->save();
         return redirect()->back();
     }
@@ -100,6 +98,7 @@ class UserManagerController extends Controller
     {
         $user = User::findorFail($id);
         $user->delete();
+       
         return redirect()->back();
     }
 }
