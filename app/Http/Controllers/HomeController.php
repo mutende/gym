@@ -41,6 +41,8 @@ class HomeController extends Controller
             
         ]);
 
+        $class_ids = ClassSession::select('id')->where('trainer_id' ,  $request->trainer)->get();
+
 
         $cls = new ClassSession();
         $cls->name = $request->name;
@@ -50,6 +52,8 @@ class HomeController extends Controller
        
 
         $cls->save();
+    
+
 
         return redirect()->back();
 
@@ -64,6 +68,8 @@ class HomeController extends Controller
             'duration' => ['required'],
             'trainer' => ['required']
         ]);
+
+      
 
 
         $cls = ClassSession::findorFail($id);
@@ -84,5 +90,7 @@ class HomeController extends Controller
         $cls->delete();
         return redirect()->back();
     }
+
+
 
 }

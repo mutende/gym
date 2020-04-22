@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Membership;
+use App\ClassSession;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -20,7 +21,9 @@ class UserManagerController extends Controller
 
         $memberships = Membership::all();
         $users = User::all();
-        return view('clients', compact('memberships','users'));
+        $sessions = ClassSession::all();
+
+        return view('clients', compact('memberships','users','sessions'));
     }
 
 
@@ -29,12 +32,15 @@ class UserManagerController extends Controller
     public function store(Request $request)
     {
 
+        
+
         $this->validate($request,[
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:13'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'membership' => ['required']
+            'membership' => ['required'],
+            'ss' => ['required']
         ]);
 
         $password = Hash::make('test@123');
@@ -47,6 +53,9 @@ class UserManagerController extends Controller
         $user->membership_id = $request->membership;
 
         $user->save();
+
+        $cls = ClassSession::find($request->ss); // Modren Chairs, Home Chairs
+        $user->classsessions()->attach($cls);
         return redirect()->back();
 
 

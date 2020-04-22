@@ -42,7 +42,7 @@ class User extends Authenticatable
         return $this->belongsTo(Membership::class);
     }
 
-    public function classsession()
+    public function classsessions()
     {
         return $this->belongsToMany(ClassSession::class);
     }

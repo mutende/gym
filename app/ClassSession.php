@@ -15,7 +15,7 @@ class ClassSession extends Model
         return $this->belongsTo(Trainer::class);
     }
 
-    public function user()
+    public function users()
     {
         return $this->belongsToMany(User::class);
     }

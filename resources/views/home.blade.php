@@ -153,7 +153,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="Duration">Description</label>
+                                        <label for="Duration">Duration</label>
                                         <input type="number" class="form-control" id="Duration" name="duration" placeholder="Enter Duration in Hrs" maxlength="2">
                                     </div>      
                                     <div class="form-group">

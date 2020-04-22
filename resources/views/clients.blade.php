@@ -14,7 +14,7 @@
         </div>
 
         <div class="row">
-            <div class="col-md-4 ml-3">
+            <div class="col-md-3 ml-3">
                 <!-- form start -->
                 <div class="card card-primary">
                     <div class="card-header">
@@ -22,8 +22,8 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    @if($memberships->count() == 0)
-                    <h2 class="text-center text-warning">Add Memberships First </h2>
+                    @if($memberships->count() == 0 or $sessions->count() == 0)
+                    <h2 class="text-center text-warning">Add Memberships and Class Sessions First </h2>
                     @else
                     
                     <form action="{{ route('client.store') }}" method="POST">
@@ -82,6 +82,17 @@
                                             </select>
                                         </div>
 
+                                        <div class="form-group">
+                                            <label for="Duration">Session</label>
+                                            <select class="custom-select" name="ss">
+
+                                                @foreach($sessions as $ss)
+                                                    <option value="{{$ss->id}}"> {{$ss->name}}</option>
+                                                @endforeach
+
+                                            </select>                                                                        
+                                        </div>
+
 
                             </div>
                         </div>
@@ -96,7 +107,7 @@
                 </div>
 
             </div>
-            <div class="col-md-6 offset-md-1">
+            <div class="col-md-8">
                 <div class="card">
                     <table id="example2" class="table table-bordered table-hover">
                         <thead>
@@ -106,6 +117,7 @@
                             <th>Email</th>
                             <th>Phone</th>
                             <th>Membership</th>
+                            <th>Sessions</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -122,6 +134,13 @@
                                         <td>{{ $user->email}}</td>
                                         <td>{{ $user->phone}}</td>
                                         <td>{{ $user->membership->membership }}</td>
+                                        <td>
+                                            @foreach($user->classsessions as $ssn)
+                                            <li>{{ $ssn->name }}</li>
+                                            @endforeach
+                                        
+                                        
+                                        </td>
                                         <td>
                                      <form method="POST" action="{{ route('client.destroy', $user->id) }}">
                                                 @csrf
@@ -200,15 +219,26 @@
                                                                         @enderror
                                                                     </div>
                                                                     <div class="form-group">
-                                                                    <label for="Duration">Description</label>
-                                                                    <select class="custom-select" name="membership">
+                                                                        <label for="Duration">Description</label>
+                                                                        <select class="custom-select" name="membership">
 
-                                                                        @foreach($memberships as $ms)
-                                                                            <option value="{{$ms->id}}"> {{$ms->membership}}</option>
-                                                                        @endforeach
+                                                                            @foreach($memberships as $ms)
+                                                                                <option value="{{$ms->id}}"> {{$ms->membership}}</option>
+                                                                            @endforeach
 
-                                                                    </select>
-                                                                </div>
+                                                                        </select>                                                                        
+                                                                    </div>
+
+                                                                    <div class="form-group">
+                                                                        <label for="Duration">Session</label>
+                                                                        <select class="custom-select" name="ss">
+
+                                                                            @foreach($sessions as $ss)
+                                                                                <option value="{{$ss->id}}"> {{$ss->name}}</option>
+                                                                            @endforeach
+
+                                                                        </select>                                                                        
+                                                                    </div>
                                                             </div>
                                                         </div>
                                                         <!-- /.card-body -->
