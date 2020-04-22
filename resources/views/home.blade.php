@@ -45,11 +45,11 @@
                         <div class="small-box bg-success">
                             <div class="inner">
 
-                                @if($trainers < 2)
-                                    <h3>{{ $trainers }}</h3>
+                                @if($trainers->count() < 2)
+                                    <h3>{{ $trainers->count() }}</h3>
                                     <p>Trainer</p>
                                 @else
-                                    <h3>{{ $trainers }}</h3>
+                                    <h3>{{ $trainers->count() }}</h3>
                                     <p>Trainers</p>
                                 @endif
 
@@ -104,7 +104,7 @@
                 <!-- /.row -->
                 <!-- Main row -->
                 <div class="row mt-5">
-                <section class="col-lg-8  offset-md-2 connectedSortable">
+                <section class="col-lg-12  connectedSortable">
                 <div class="row">
         <div class="col-12">
           <div class="card">
@@ -135,9 +135,9 @@
 
                           <!-- /.card-header -->
                           <!-- form start -->
-                            @if($members == 0)
+                            @if($trainers->count() == 0)
 
-                                <h2 class="text-center text-warning">Add Memberships First </h2>
+                                <h2 class="text-center text-warning">Add Trainers First </h2>
                                 @else
 
                                 <form role="form" method="post" action="{{ route('home.store') }}">
@@ -155,7 +155,17 @@
                                     <div class="form-group">
                                         <label for="Duration">Description</label>
                                         <input type="number" class="form-control" id="Duration" name="duration" placeholder="Enter Duration in Hrs" maxlength="2">
-                                    </div>
+                                    </div>      
+                                    <div class="form-group">
+                                    <label for="Duration">Trainer</label>
+                                    <select class="custom-select" name="trainer">
+
+                                        @foreach($trainers as $tr)
+                                            <option value="{{$tr->id}}"> {{$tr->name}}</option>
+                                        @endforeach
+
+                                    </select>
+                                </div>
 
         
 
@@ -182,6 +192,7 @@
                   <th>No</th>
                   <th>Class</th>
                   <th>Duration</th>
+                  <th>Trainer</th>
                   <th>Description</th>
                   <th>Action</th>
                 </tr>
@@ -192,7 +203,8 @@
                         <tr>
                             <td><?php echo $no; ?></td>
                             <td>{{ $s->name }}</td>
-                            <td>{{ $s->duration }} Hours</td>
+                            <td>{{ $s->duration }} Hours</td>                          
+                            <td>{{ $s->trainer->name }}</td>
                             <td>{{ $s->description }}</td>
                             <td>
 
@@ -242,6 +254,17 @@
                                                     <div class="form-group">
                                                         <label for="Duration">Description</label>
                                                         <input type="number" class="form-control" id="Duration" name="duration" placeholder="Enter Duration in Hrs" maxlength="2" value="{{$s->duration}}">
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="Duration">Trainer</label>
+                                                        <select class="custom-select" name="trainer">
+
+                                                            @foreach($trainers as $tr)
+                                                                <option value="{{$tr->id}}"> {{$tr->name}}</option>
+                                                            @endforeach
+
+                                                        </select>
                                                     </div>
 
                                                 </div>

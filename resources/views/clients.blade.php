@@ -199,6 +199,16 @@
                                                                         </span>
                                                                         @enderror
                                                                     </div>
+                                                                    <div class="form-group">
+                                                                    <label for="Duration">Description</label>
+                                                                    <select class="custom-select" name="membership">
+
+                                                                        @foreach($memberships as $ms)
+                                                                            <option value="{{$ms->id}}"> {{$ms->membership}}</option>
+                                                                        @endforeach
+
+                                                                    </select>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <!-- /.card-body -->

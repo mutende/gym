@@ -21,12 +21,12 @@ class HomeController extends Controller
     {
         $cls = ClassSession::all()->count();
         $members = Membership::all()->count();
-        $trainers = Trainer::all()->count();
+        $trainers = Trainer::all();
         $users = User::all()->count();
       
 
         $sessions = ClassSession::all();
-        return view('home',compact('sessions','cls','members','trainers','users','memberships'));
+        return view('home',compact('sessions','cls','members','trainers','users'));
     }
 
     public function store(Request $request)
@@ -37,6 +37,7 @@ class HomeController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:255'],
             'duration' => ['required'],
+            'trainer' => ['required']
             
         ]);
 
@@ -45,6 +46,7 @@ class HomeController extends Controller
         $cls->name = $request->name;
         $cls->description = $request->description;
         $cls->duration = (int)$request->duration;
+        $cls->trainer_id = $request->trainer;
        
 
         $cls->save();
@@ -60,6 +62,7 @@ class HomeController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:255'],
             'duration' => ['required'],
+            'trainer' => ['required']
         ]);
 
 
@@ -67,6 +70,7 @@ class HomeController extends Controller
         $cls->name = $request->name;
         $cls->description = $request->description;
         $cls->duration = (int)$request->duration;
+        $cls->trainer_id = $request->trainer;
 
         $cls->save();
 

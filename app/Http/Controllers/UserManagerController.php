@@ -66,7 +66,8 @@ class UserManagerController extends Controller
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:13'],
-            'email' => ['sometimes', 'string', 'email', 'min:6','max:255']
+            'email' => ['sometimes', 'string', 'email', 'min:6','max:255'],
+            'membership' => ['required']
         ]);
 
 
@@ -79,6 +80,7 @@ class UserManagerController extends Controller
             $pass = Hash::make($request->password);
             $user->password = $pass;
         }
+        $user->membership_id = $request->membership;
 
         $user->save();
         return redirect()->back();
