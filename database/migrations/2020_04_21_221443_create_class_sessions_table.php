@@ -18,6 +18,8 @@ class CreateClassSessionsTable extends Migration
             $table->string('name');
             $table->integer('duration');
             $table->text('description');
+            $table->bigInteger('trainer_id')->unsigned()->nullable();
+            $table->foreign('trainer_id')->references('id')->on('trainers')->onDelete('set null')->onUpdate('cascade');
             $table->timestamps();
         });
     }
