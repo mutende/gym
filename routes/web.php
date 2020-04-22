@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return redirect('login');
-});
+Route::get('/', 'HomePageController@index')->name('homepage');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/home', 'HomeController@store')->name('home.store');
 Route::put('/home/{id}', 'HomeController@update')->name('home.update');

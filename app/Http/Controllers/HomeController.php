@@ -23,10 +23,10 @@ class HomeController extends Controller
         $members = Membership::all()->count();
         $trainers = Trainer::all();
         $users = User::all()->count();
-      
+
 
         $sessions = ClassSession::all();
-        return view('home',compact('sessions','cls','members','trainers','users'));
+        return view('dashboard',compact('sessions','cls','members','trainers','users'));
     }
 
     public function store(Request $request)
@@ -38,7 +38,7 @@ class HomeController extends Controller
             'description' => ['required', 'string', 'max:255'],
             'duration' => ['required'],
             'trainer' => ['required']
-            
+
         ]);
 
         $class_ids = ClassSession::select('id')->where('trainer_id' ,  $request->trainer)->get();
@@ -49,10 +49,10 @@ class HomeController extends Controller
         $cls->description = $request->description;
         $cls->duration = (int)$request->duration;
         $cls->trainer_id = $request->trainer;
-       
+
 
         $cls->save();
-    
+
 
 
         return redirect()->back();
@@ -69,7 +69,7 @@ class HomeController extends Controller
             'trainer' => ['required']
         ]);
 
-      
+
 
 
         $cls = ClassSession::findorFail($id);
