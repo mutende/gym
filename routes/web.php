@@ -19,10 +19,7 @@ Route::post('/home', 'HomeController@store')->name('home.store');
 Route::put('/home/{id}', 'HomeController@update')->name('home.update');
 Route::delete('/home/{id}', 'HomeController@destroy')->name('home.destroy');
 
-Auth::routes([
-    'register' => false,
-    'reset' => false
-    ]);
+Auth::routes();
 
 Route::resource('trainer', 'TrainerController',[ 'except' => ['edit','show','create']]);
 

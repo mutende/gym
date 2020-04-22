@@ -53,7 +53,7 @@ class UserManagerController extends Controller
 
         $user->save();
 
-        $cls = ClassSession::find($request->ss); star
+        $cls = ClassSession::find($request->ss);
         $user->classsessions()->attach($cls);
         return redirect()->back();
 
@@ -86,7 +86,7 @@ class UserManagerController extends Controller
         }
         $user->membership_id = $request->membership;
 
-        $cls = ClassSession::find($request->ss); 
+        $cls = ClassSession::find($request->ss);
         $user->classsessions()->attach($cls);
 
         $user->save();
@@ -98,7 +98,7 @@ class UserManagerController extends Controller
     {
         $user = User::findorFail($id);
         $user->delete();
-       
+
         return redirect()->back();
     }
 }
