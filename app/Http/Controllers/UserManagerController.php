@@ -23,6 +23,7 @@ class UserManagerController extends Controller
         $users = User::all();
         $sessions = ClassSession::all();
 
+
         return view('clients', compact('memberships','users','sessions'));
     }
 
@@ -86,10 +87,14 @@ class UserManagerController extends Controller
         }
         $user->membership_id = $request->membership;
 
-        $cls = ClassSession::find($request->ss);
-        $user->classsessions()->attach($cls);
-
         $user->save();
+
+        if($request->ss != null){
+            $cls = ClassSession::find($request->ss);
+            $user->classsessions()->attach($cls);
+        }
+
+
         return redirect()->back();
     }
 

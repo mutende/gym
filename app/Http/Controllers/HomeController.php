@@ -22,7 +22,7 @@ class HomeController extends Controller
     public function index()
     {
         $cls = ClassSession::all()->count();
-        $members = Membership::all()->count();
+        $members = Membership::all();
         $trainers = Trainer::all();
         $users = User::all()->count();
         $weekdays = Weekday::all();

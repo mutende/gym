@@ -240,13 +240,14 @@
 
                                                                         </select>
                                                                     </div>
+
                                                             </div>
                                                         </div>
                                                         <!-- /.card-body -->
 
                                                         <div class="card-footer">
 
-                                                            <button type="submit" class="btn btn-primary ml-3" style="width:120px !important;">Update role</button>
+                                                            <button type="submit" class="btn btn-primary ml-3" style="width:120px !important;">Update Client</button>
                                                         </div>
                                                     </form>
                                                 </div>
