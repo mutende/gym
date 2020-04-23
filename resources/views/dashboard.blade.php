@@ -151,23 +151,44 @@
                                         <label for="description">Description</label>
                                         <textarea type="text" class="form-control" id="description" name="description" placeholder="Enter Class Description" rows="4" cols="5"></textarea>
                                     </div>
+                                        <div class="form-group">
+                                            <label for="DayId">Day</label>
+                                            <select class="custom-select" name="day" id="DayId">
+
+                                                @foreach($weekdays as $day)
+                                                    <option value="{{$day->id}}" > {{$day->day}}</option>
+                                                @endforeach
+
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Start Time</label>
+
+                                            <div class="input-group date" id="timepicker" data-target-input="nearest">
+                                                <input type="text" class="form-control datetimepicker-input" data-target="#timepicker" data-toggle="datetimepicker" name="starttime"/>
+                                                <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
+                                                    <div class="input-group-text"><i class="far fa-clock"></i></div>
+                                                </div>
+                                            </div>
+                                            <!-- /.input group -->
+                                        </div>
 
                                     <div class="form-group">
                                         <label for="Duration">Duration</label>
                                         <input type="number" class="form-control" id="Duration" name="duration" placeholder="Enter Duration in Hrs" maxlength="2">
-                                    </div>      
+                                    </div>
                                     <div class="form-group">
                                     <label for="Duration">Trainer</label>
-                                    <select class="custom-select" name="trainer">
+                                         <select class="custom-select" name="trainer">
 
-                                        @foreach($trainers as $tr)
-                                            <option value="{{$tr->id}}"> {{$tr->name}}</option>
-                                        @endforeach
+                                            @foreach($trainers as $tr)
+                                                <option value="{{$tr->id}}"> {{$tr->name}}</option>
+                                            @endforeach
 
-                                    </select>
-                                </div>
+                                         </select>
+                                      </div>
 
-        
+
 
 
                                     </div>
@@ -191,7 +212,10 @@
                 <tr>
                   <th>No</th>
                   <th>Class</th>
+                  <th>Day</th>
+                  <th>Start Time</th>
                   <th>Duration</th>
+                  <th>Stop Time</th>
                   <th>Trainer</th>
                   <th>Description</th>
                   <th>Action</th>
@@ -203,7 +227,10 @@
                         <tr>
                             <td><?php echo $no; ?></td>
                             <td>{{ $s->name }}</td>
-                            <td>{{ $s->duration }} Hours</td>                          
+                            <td>{{ $s->weekday->day}}</td>
+                            <td>{{ $s->start_time }}</td>
+                            <td>{{ $s->duration }} Hour(s)</td>
+                            <td>{{ $s->stop_time }}</td>
                             <td>{{ $s->trainer->name }}</td>
                             <td>{{ $s->description }}</td>
                             <td>
@@ -243,29 +270,50 @@
 
                                                 <div class="card-body">
                                                     <div class="form-group">
-                                                        <label for="className">Class Name</label>
-                                                        <input type="text" class="form-control" id="className" name="name" placeholder="Class Name" value="{{$s->name}}">
+                                                        <label for="classNameII">Class Name</label>
+                                                        <input type="text" class="form-control" id="classNameII" name="name" placeholder="Class Name" value="{{ $s->name }}">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="description">Description</label>
-                                                        <textarea type="text" class="form-control" id="description" name="description" placeholder="Enter Class Description" rows="4" cols="5">{{$s->description}}</textarea>
+                                                        <textarea type="text" class="form-control" id="description" name="description" rows="4" cols="5">{{ $s->description }}</textarea>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="DayIdII">Day</label>
+                                                        <select class="custom-select" name="day" id="DayIdII">
+
+                                                            @foreach($weekdays as $day)
+                                                                <option value="{{$day->id}}" @if($s->day_id == $day->id) selected @endif> {{$day->day}}</option>
+                                                            @endforeach
+
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Start Time</label>
+
+                                                        <div class="input-group date" id="timepickerII" data-target-input="nearest">
+                                                            <input type="text" class="form-control datetimepicker-input" data-target="#timepickerII" data-toggle="datetimepicker" name="starttime" placeholder="{{ $s->start_time  }}"/>
+                                                            <div class="input-group-append" data-target="#timepickerII" data-toggle="datetimepicker">
+                                                                <div class="input-group-text"><i class="far fa-clock"></i></div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- /.input group -->
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label for="Duration">Description</label>
-                                                        <input type="number" class="form-control" id="Duration" name="duration" placeholder="Enter Duration in Hrs" maxlength="2" value="{{$s->duration}}">
+                                                        <label for="Duration">Duration</label>
+                                                        <input type="number" class="form-control" id="Duration" name="duration" value="{{ $s->duration }}" maxlength="2">
                                                     </div>
-
                                                     <div class="form-group">
                                                         <label for="Duration">Trainer</label>
                                                         <select class="custom-select" name="trainer">
 
                                                             @foreach($trainers as $tr)
-                                                                <option value="{{$tr->id}}"> {{$tr->name}}</option>
+                                                                <option value="{{$tr->id}}" @if($s->trainer_id == $tr->id) selected @endif> {{$tr->name}}</option>
                                                             @endforeach
 
                                                         </select>
                                                     </div>
+
 
                                                 </div>
                                                 <!-- /.card-body -->

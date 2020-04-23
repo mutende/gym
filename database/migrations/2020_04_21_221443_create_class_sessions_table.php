@@ -20,6 +20,10 @@ class CreateClassSessionsTable extends Migration
             $table->text('description');
             $table->bigInteger('trainer_id')->unsigned()->nullable();
             $table->foreign('trainer_id')->references('id')->on('trainers')->onDelete('set null')->onUpdate('cascade');
+            $table->bigInteger('day_id')->unsigned()->nullable();
+            $table->foreign('day_id')->references('id')->on('weekdays')->onDelete('set null')->onUpdate('cascade');
+            $table->time('start_time');
+            $table->time('stop_time');
             $table->timestamps();
         });
     }

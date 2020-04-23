@@ -19,4 +19,9 @@ class ClassSession extends Model
     {
         return $this->belongsToMany(User::class);
     }
+
+    public function weekday()
+    {
+        return $this->belongsTo(Weekday::class, 'day_id');
+    }
 }
