@@ -81,7 +81,7 @@ class UserManagerController extends Controller
         $user->lastname = $request->lastname;
         $user->phone = $request->phone;
         $user->email = $request->email;
-        if(strlen($request->password) < 6){
+        if(strlen($request->password) > 6){
             $pass = Hash::make($request->password);
             $user->password = $pass;
         }

@@ -454,7 +454,7 @@
                                             </div>
                                             <!-- /.tab-pane -->
                                             <div class="tab-pane" id="timetable">
-                                                <p>Timetable</p>
+                                                <p>In progress...</p>
                                             </div>
                                             <!-- /.tab-pane -->
 

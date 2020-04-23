@@ -50,6 +50,7 @@
             </div>
             <div class="col-md-6 offset-md-1">
                 <div class="card">
+                <div class="card-body">
                     <table id="example2" class="table table-bordered table-hover">
                         <thead>
                         <tr>
@@ -132,5 +133,6 @@
             </div>
            </div>
         </div>
+    </div>
 
 @endsection

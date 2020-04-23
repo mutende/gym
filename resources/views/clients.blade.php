@@ -110,6 +110,7 @@
             </div>
             <div class="col-md-8">
                 <div class="card">
+                <div class="card-body">
                     <table id="example2" class="table table-bordered table-hover">
                         <thead>
                         <tr>
@@ -167,7 +168,7 @@
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">Update Client Details</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
@@ -223,16 +224,18 @@
                                                                         <label for="Duration">Membership</label>
                                                                         <select class="custom-select" name="membership">
 
-                                                                            @foreach($memberships as $ms)
-                                                                                <option value="{{$ms->id}}"> {{$ms->membership}}</option>
+                                                                            @foreach($memberships as $mbs)
+                                                                                <option value="{{$mbs->id}}" @if($user->membership_id == $mbs->id) selected @endif> {{$mbs->membership}}</option>
                                                                             @endforeach
 
                                                                         </select>
                                                                     </div>
 
                                                                     <div class="form-group">
-                                                                        <label for="Duration">Session</label>
+                                                                        <label for="Duration">Add Sessions To Client</label>
                                                                         <select class="custom-select" name="ss">
+
+                                                                            <option value="">--None--</option>
 
                                                                             @foreach($sessions as $ss)
                                                                                 <option value="{{$ss->id}}"> {{$ss->name}}</option>
@@ -263,5 +266,6 @@
             </div>
            </div>
         </div>
+    </div>
 
 @endsection
