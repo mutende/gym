@@ -1,24 +1,40 @@
 @extends('layout.app')
-
+@section('title','Dashboard')
 @section('content')
     <!-- Content Wrapper. Contains page content -->
+    @if(Auth::user()->id == 1)
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Dashboard</h1>
+                        <h1 class="m-0 text-dark">Admin Dashboard</h1>
                     </div><!-- /.col -->
                  <!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>
+        @else
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <div class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1 class="m-0 text-dark">Client Dashboard</h1>
+                            </div><!-- /.col -->
+                            <!-- /.col -->
+                        </div><!-- /.row -->
+                    </div><!-- /.container-fluid -->
+                </div>
+        @endif
         <!-- /.content-header -->
 
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
+            @if(Auth::user()->id == 1)
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
                     <div class="col-lg-3 col-6">
@@ -338,9 +354,13 @@
           <!-- /.card -->
         </div>
         <!-- /.col -->
+                    @else
+                        <h1>Woriking on this ....</h1>
+                    @endif
       </div>
 
     </section>
+
    </div>
     </div>
 

@@ -1,4 +1,5 @@
 @extends('layout.app')
+@section('title','Client')
 @section('content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -25,7 +26,7 @@
                     @if($memberships->count() == 0 or $sessions->count() == 0)
                     <h2 class="text-center text-warning">Add Memberships and Class Sessions First </h2>
                     @else
-                    
+
                     <form action="{{ route('client.store') }}" method="POST">
                         @csrf
                         <div class="card-body">
@@ -72,7 +73,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                            <label for="Duration">Description</label>
+                                            <label>Membership</label>
                                             <select class="custom-select" name="membership">
 
                                                 @foreach($memberships as $ms)
@@ -90,7 +91,7 @@
                                                     <option value="{{$ss->id}}"> {{$ss->name}}</option>
                                                 @endforeach
 
-                                            </select>                                                                        
+                                            </select>
                                         </div>
 
 
@@ -138,8 +139,8 @@
                                             @foreach($user->classsessions as $ssn)
                                             <li>{{ $ssn->name }}</li>
                                             @endforeach
-                                        
-                                        
+
+
                                         </td>
                                         <td>
                                      <form method="POST" action="{{ route('client.destroy', $user->id) }}">
@@ -219,14 +220,14 @@
                                                                         @enderror
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="Duration">Description</label>
+                                                                        <label for="Duration">Membership</label>
                                                                         <select class="custom-select" name="membership">
 
                                                                             @foreach($memberships as $ms)
                                                                                 <option value="{{$ms->id}}"> {{$ms->membership}}</option>
                                                                             @endforeach
 
-                                                                        </select>                                                                        
+                                                                        </select>
                                                                     </div>
 
                                                                     <div class="form-group">
@@ -237,7 +238,7 @@
                                                                                 <option value="{{$ss->id}}"> {{$ss->name}}</option>
                                                                             @endforeach
 
-                                                                        </select>                                                                        
+                                                                        </select>
                                                                     </div>
                                                             </div>
                                                         </div>

@@ -47,7 +47,17 @@
                                                 {{ __('Login') }}
                                             </button>
 
+                                        <a class="btn btn-link" href="/">
+                                            <i class="fas fa-arrow-left"></i> Home
+                                        </a>
+{{--                                        <div>--}}
+{{--                                            <a class="btn btn-link" href="{{ route('password.request') }}">--}}
+{{--                                                {{ __('Forgot Your Password?') }}--}}
+{{--                                            </a>--}}
+{{--                                        </div>--}}
                                     </div>
+
+
                                 </div>
 
                             </form>
