@@ -17,7 +17,15 @@ Route::post('/home', 'HomeController@store')->name('home.store');
 Route::put('/home/{id}', 'HomeController@update')->name('home.update');
 Route::delete('/home/{id}', 'HomeController@destroy')->name('home.destroy');
 
-Auth::routes();
+
+Auth::routes([
+    'register' => false,
+    'reset' => false,
+    'verify' => false,
+]);
+
+Route::get('/register','Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('/register','Auth\RegisterController@register')->name('register.store');
 
 Route::resource('trainer', 'TrainerController',[ 'except' => ['edit','show','create']]);
 

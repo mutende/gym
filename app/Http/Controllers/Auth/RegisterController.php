@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\ClassSession;
+use App\Membership;
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -32,6 +36,14 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
+
+    public function showRegistrationForm()
+    {
+        $memberships = Membership::all();
+        $sessions = ClassSession::all();
+        return view('auth.register', compact('memberships','sessions'));
+    }
+
 
 
     protected function validator(array $data)
@@ -66,4 +78,24 @@ class RegisterController extends Controller
 
         return $user;
     }
+
+    public function register(Request $request)
+    {
+        
+        $this->validator($request->all())->validate();
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+            ?: redirect()->route('home');
+    }
+
+
+    protected function guard()
+    {
+        return Auth::guard();
+    }
+
+
 }
