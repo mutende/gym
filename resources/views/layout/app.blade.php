@@ -79,7 +79,11 @@
                     <i class="img-circle elevation-2 text-white mt-2 fa fa-user"></i>
                 </div>
                 <div class="info">
+                    @if(Auth::user()->id == 1)
+                     <a href="{{ route('show.profile') }}" class="d-block"> {{ Auth::user()->firstname }}  {{ Auth::user()->lastname }}</a>
+                    @else
                     <a href="{{ route('home') }}" class="d-block"> {{ Auth::user()->firstname }}  {{ Auth::user()->lastname }}</a>
+                    @endif
                 </div>
             </div>
 

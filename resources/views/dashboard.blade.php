@@ -397,13 +397,6 @@
                                     <!-- /.card-body -->
                                 </div>
                                 <!-- /.card -->
-
-                                <!-- About Me Box -->
-                                <div class="card card-primary">
-
-
-                                    <!-- /.card-body -->
-                                </div>
                                 <!-- /.card -->
                             </div>
                             <!-- /.col -->

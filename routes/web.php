@@ -27,4 +27,5 @@ Route::put('/membership/{id}', 'MembershipController@update')->name('memberships
 Route::delete('/membership/{id}', 'MembershipController@destroy')->name('memberships.destroy');
 
 Route::resource('client', 'UserManagerController',[ 'except' => ['edit','show','create']]);
+Route::get('/profile', 'UserManagerController@profile')->name('show.profile');
 

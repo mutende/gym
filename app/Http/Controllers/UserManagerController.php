@@ -72,7 +72,7 @@ class UserManagerController extends Controller
             'lastname' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:13'],
             'email' => ['sometimes', 'string', 'email', 'min:6','max:255'],
-            'membership' => ['required'],
+            'membership' => ['sometimes'],
         ]);
 
 
@@ -85,7 +85,9 @@ class UserManagerController extends Controller
             $pass = Hash::make($request->password);
             $user->password = $pass;
         }
-        $user->membership_id = $request->membership;
+        if(strlen($request->membership_id) > 0){
+            $user->membership_id = $request->membership;
+        }
 
         $user->save();
 
@@ -105,5 +107,9 @@ class UserManagerController extends Controller
         $user->delete();
 
         return redirect()->back();
+    }
+
+    public function profile(){
+        return view('profile');
     }
 }
