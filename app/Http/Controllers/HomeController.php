@@ -26,8 +26,6 @@ class HomeController extends Controller
         $trainers = Trainer::all();
         $users = User::all()->count();
         $weekdays = Weekday::all();
-
-
         $sessions = ClassSession::all();
         return view('dashboard',compact('sessions','cls','members','trainers','users','weekdays'));
     }

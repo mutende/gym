@@ -339,6 +339,7 @@
                                 </div>
                             </div>
                         </div>
+                        <?php $no++; ?>
                     @endforeach
 
 
@@ -410,8 +411,7 @@
                                 <div class="card">
                                     <div class="card-header p-2">
                                         <ul class="nav nav-pills">
-                                            <li class="nav-item"><a class="nav-link active" href="#sessions" data-toggle="tab">Sessions</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="#timetable" data-toggle="tab">Timetable</a></li>
+                                            <li class="nav-item"><a class="nav-link active" href="#sessions" data-toggle="tab"> All Sessions</a></li>
                                             <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
                                         </ul>
                                     </div><!-- /.card-header -->
@@ -452,11 +452,6 @@
                                                     </table>
                                                 </div>
                                             </div>
-                                            <!-- /.tab-pane -->
-                                            <div class="tab-pane" id="timetable">
-                                                <p>In progress...</p>
-                                            </div>
-                                            <!-- /.tab-pane -->
 
                                             <div class="tab-pane" id="settings">
                                                 <form action="{{ route('client.update', Auth::user()->id) }}" method="POST">
